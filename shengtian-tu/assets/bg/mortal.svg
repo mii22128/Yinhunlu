@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="earth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6a4a2e"/>
+      <stop offset="55%" stop-color="#c4a06a"/>
+      <stop offset="100%" stop-color="#8a6238"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#earth)"/>
+  <rect x="0" y="0" width="1600" height="140" fill="#3d2914" opacity="0.35"/>
+  <path d="M80 200 H1520" stroke="#5c3d22" stroke-width="8"/>
+  <rect x="220" y="520" width="1160" height="28" fill="#5c3d22"/>
+  <rect x="300" y="430" width="200" height="90" fill="#7a4a28" stroke="#3d2914" stroke-width="4"/>
+  <rect x="360" y="390" width="80" height="40" fill="#8b3a2a"/>
+  <rect x="700" y="400" width="220" height="120" rx="8" fill="#9a6a32" stroke="#3d2914" stroke-width="5"/>
+  <ellipse cx="810" cy="400" rx="70" ry="18" fill="#c4a06a"/>
+  <rect x="1120" y="410" width="160" height="110" fill="#6b3a24"/>
+  <rect x="140" y="160" width="36" height="360" fill="#8b3a2a"/>
+  <path d="M120 160 Q158 80 196 160" fill="#c45c4a"/>
+  <rect x="1420" y="180" width="28" height="280" fill="#3d2914"/>
+  <rect x="1390" y="200" width="88" height="14" fill="#c9a227"/>
+  <rect x="1390" y="240" width="88" height="14" fill="#c9a227"/>
+  <rect x="1390" y="280" width="88" height="14" fill="#c9a227"/>
+  <circle cx="1280" cy="160" r="10" fill="#f3c56b" opacity="0.7"/>
+  <path d="M0 780 H1600" stroke="#3d2914" stroke-width="20"/>
+  <g class="mourners">
+    <ellipse cx="310" cy="620" rx="36" ry="10" fill="#3d2914" opacity="0.35"/>
+    <path d="M292 560 Q310 500 328 560 V620 H292 Z" fill="#5a3a28"/>
+    <circle cx="310" cy="492" r="16" fill="#c4a07a"/>
+    <path d="M298 488 Q310 510 322 488" fill="none" stroke="#8b3a2a" stroke-width="2"/>
+    <ellipse cx="390" cy="628" rx="32" ry="9" fill="#3d2914" opacity="0.3"/>
+    <path d="M374 572 Q390 520 406 572 V626 H374 Z" fill="#6b4228"/>
+    <circle cx="390" cy="508" r="14" fill="#b89070"/>
+    <path d="M380 518 Q390 536 400 518" fill="none" stroke="#8b3a2a" stroke-width="2"/>
+  </g>
+</svg>

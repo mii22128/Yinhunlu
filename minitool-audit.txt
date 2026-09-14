@@ -1,0 +1,58 @@
+小红书小工具校验摘要（minitool-zip-builder 1.6.0）
+================================================
+
+Skill：.claude/minitool-zip-builder/SKILL.md
+产物目录：/workspace/dist-minitool
+产物 zip：/workspace/minitool.zip
+重建：python3 /workspace/scripts/build_minitool.py
+
+自动审计
+--------
+python3 .claude/minitool-zip-builder/scripts/audit_artifact.py dist-minitool
+  PASS: 89 file(s), 0 warning(s)
+
+python3 .claude/minitool-zip-builder/scripts/audit_artifact.py minitool.zip
+  WARN: minitool.zip: zip is 9.15 MiB; recommended target is 2 MiB
+  PASS: 89 file(s), 1 warning(s)   （硬上限 10 MiB 已满足）
+
+zip-artifact-spec
+-----------------
+[x] index.html 在 zip 根目录，未多套一层目录
+[x] 仅 html/css/js/png/jpg/svg（无 ico / md / zip / node_modules / source map）
+[x] 脚本外置 <script src="./...">，无 type=module、无内联脚本、无行内事件
+[x] 相对路径 ./，无 <base>、无 iframe/object、无自建 CSP
+[x] 无站外 http(s) 资源（仅 CSS data:svg 内含 w3.org xmlns）
+[x] 已去掉下载链接 / a[download]（容器禁止文件下载）
+
+device-capabilities
+-------------------
+[x] 无 fetch / XHR / Worker / clipboard / geolocation / eval / window.open
+[x] 未使用 JSBridge（无 window.xhs.miniTool 调用）
+[x] 存储仅 localStorage；交互为 pointer/touch
+
+js-compatibility
+----------------
+[x] 已去掉 class 私有字段 / 公开字段、可选链、空值合并、optional catch
+[x] replaceChildren 改为 clearChildren；ResizeObserver 有 window.resize 回退
+[x] node --check 全部通过
+[ ] Chrome 61 / Android 8.1 兼容性未实测
+
+css-compatibility
+-----------------
+[x] inset / dvh 已回退为物理方向 + 100vh / --app-height
+[x] clamp/min/max 前写有固定回退；Flex gap 有 margin 基线 + supports-flex-gap 行为检测
+[x] :focus-visible 同时提供 :focus
+[ ] Chrome 61 CSS 兼容性未实测
+
+cross-platform-h5
+-----------------
+[x] viewport-fit=cover；安全区 var(--safe-area-inset-*, env(...))
+[x] touch-action: manipulation；pointer + touch
+[x] 舞台尺寸由 JS 写入 --stage-w / --stage-h
+
+performance-budget
+------------------
+[x] 无 WebGL；无超大 Base64 源码
+[x] 无内置大型数据库
+[x] zip 9.15 MiB < 10 MiB；大于建议 2 MiB（画幅 JPG/PNG）
+[ ] 性能未实测

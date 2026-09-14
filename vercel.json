@@ -1,0 +1,6 @@
+{
+  "cleanUrls": false,
+  "rewrites": [
+    { "source": "/", "destination": "/shengtian-tu/index.html" }
+  ]
+}

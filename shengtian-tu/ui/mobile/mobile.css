@@ -1,0 +1,244 @@
+/* 手机：横屏优先铺满，竖屏提示旋转，知识卡底部弹出 */
+
+.rotate-prompt {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: max(24px, env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-right, 0px))
+    max(24px, env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px));
+  background:
+    linear-gradient(180deg, rgba(16, 12, 10, 0.88), rgba(10, 8, 6, 0.94)),
+    url("../../assets/bg/xuan-paper.png");
+  background-size: auto, 280px;
+  color: #f6e7c2;
+  text-align: center;
+}
+
+.rotate-prompt[hidden],
+.rotate-prompt.hidden {
+  display: none !important;
+}
+
+.rotate-mark {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border: 2px solid #c9a227;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  animation: rotate-hint 1.6s ease-in-out infinite;
+}
+
+.rotate-prompt strong {
+  display: block;
+  letter-spacing: 0.28em;
+  font-size: clamp(18px, 5vw, 26px);
+}
+
+.rotate-prompt p {
+  margin-top: 10px;
+  letter-spacing: 0.16em;
+  color: #d8c8a4;
+  font-size: clamp(13px, 3.6vw, 16px);
+}
+
+@keyframes rotate-hint {
+  0%,
+  100% {
+    transform: rotate(-18deg);
+  }
+  50% {
+    transform: rotate(72deg);
+  }
+}
+
+html[data-ui="mobile"] .letterbox {
+  display: block;
+}
+
+html[data-ui="mobile"] .game-stage,
+html[data-ui="mobile"] .game-canvas {
+  width: 100vw;
+  width: var(--vvw, 100vw);
+  height: 100vh;
+  height: 100dvh;
+  height: var(--vvh, 100dvh);
+  max-width: none;
+  box-shadow: none;
+}
+
+html[data-ui="mobile"] .hud {
+  padding: max(6px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) 0
+    max(12px, env(safe-area-inset-left, 0px));
+}
+
+html[data-ui="mobile"] .seal,
+html[data-ui="mobile"] .hud-btn,
+html[data-ui="mobile"] .start-btn,
+html[data-ui="mobile"] .stamp-btn,
+html[data-ui="mobile"] .continue-btn,
+html[data-ui="mobile"] .path-emblem {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+html[data-ui="mobile"] .seal {
+  width: 48px;
+  height: 48px;
+}
+
+html[data-ui="mobile"] .explore-dots {
+  gap: 5px;
+}
+
+html[data-ui="mobile"] .explore-dot {
+  width: 7px;
+  height: 7px;
+}
+
+html[data-ui="mobile"] .dialogue {
+  left: max(4%, env(safe-area-inset-left, 0px));
+  right: max(4%, env(safe-area-inset-right, 0px));
+  bottom: max(6px, env(safe-area-inset-bottom, 0px));
+  max-height: 32dvh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+html[data-ui="mobile"] .path-stage {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  left: max(3%, env(safe-area-inset-left, 0px));
+  right: max(3%, env(safe-area-inset-right, 0px));
+  top: auto;
+  bottom: max(34%, calc(env(safe-area-inset-bottom, 0px) + 72px));
+  gap: 8px 12px;
+}
+
+html[data-ui="mobile"] .path-title {
+  flex: 1 0 100%;
+  width: 100%;
+  padding: 6px 12px;
+  color: var(--ink);
+  background: rgba(248, 241, 224, 0.92);
+  border: 1px solid #8a6a32;
+  text-shadow: none;
+}
+
+html[data-ui="mobile"] .path-emblem,
+html[data-ui="mobile"] .path-emblem:only-child {
+  flex-direction: column;
+  flex: 0 0 46%;
+  width: 46%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+html[data-ui="mobile"] .path-art {
+  width: 40px;
+  height: 48px;
+  flex: 0 0 auto;
+  background-color: rgba(251, 243, 221, 0.92);
+  box-shadow: inset 0 0 0 1px #8a6a32;
+}
+
+html[data-ui="mobile"] .path-emblem.is-banner .path-art {
+  width: 32px;
+  height: 72px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+html[data-ui="mobile"] .path-words {
+  flex: 1 1 auto;
+  text-align: center;
+  background: #f3ead4;
+}
+
+html[data-ui="mobile"] .knowledge-sheet {
+  place-items: end center;
+  padding: max(8px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px))
+    max(72px, calc(env(safe-area-inset-bottom, 0px) + 64px)) max(16px, env(safe-area-inset-left, 0px));
+}
+
+html[data-ui="mobile"] .knowledge-sheet .inline-card.is-sheet {
+  width: min(90vw, 420px);
+  max-height: min(42dvh, 240px);
+  transform-origin: center bottom;
+}
+
+html[data-ui="mobile"] .hotspot-wrap .inline-card:not(.is-sheet) {
+  display: none;
+}
+
+html[data-ui="mobile"] .home-panel {
+  width: min(92%, 720px);
+}
+
+html[data-ui="mobile"] .home-panel h1 {
+  font-size: clamp(22px, 10vh, 48px);
+}
+
+html[data-ui="mobile"] .level-path {
+  display: flex;
+  flex-wrap: nowrap;
+  width: auto;
+  max-width: 100%;
+  margin-bottom: 12px;
+}
+
+html[data-ui="mobile"] .home-actions {
+  flex-direction: row;
+  justify-content: center;
+}
+
+html[data-ui="mobile"] .start-btn {
+  min-width: 140px;
+}
+
+html[data-ui="mobile"] .rite-layer {
+  left: max(4%, env(safe-area-inset-left, 0px));
+  right: max(4%, env(safe-area-inset-right, 0px));
+}
+
+html[data-ui="mobile"] .rite-board,
+html[data-ui="mobile"] .culture-slip {
+  max-height: 78dvh;
+}
+
+html[data-ui="mobile"] .atlas-panel {
+  width: min(90vw, 520px);
+  max-height: min(88dvh, 360px);
+}
+
+html[data-ui="mobile"] .debug-panel {
+  top: max(52px, calc(env(safe-area-inset-top, 0px) + 48px));
+  right: max(8px, env(safe-area-inset-right, 0px));
+  left: auto;
+  bottom: auto;
+  max-width: min(42vw, 340px);
+}
+
+html[data-ui="mobile"] .recall-frame {
+  border-radius: 12px;
+}
+
+html[data-ui="mobile"] #recall-text {
+  font-size: clamp(14px, 2.6vw, 17px);
+  letter-spacing: 0.05em;
+  padding: 8px 14px;
+}
+
+html[data-ui="mobile"] .recall-copy {
+  width: min(92%, 22em);
+  bottom: 4%;
+}

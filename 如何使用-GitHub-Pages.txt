@@ -1,0 +1,51 @@
+在保留历史版本的基础上保存新版本
+================================
+
+不要使用 git push --force。强制推送会把仓库里已经存着的旧提交删掉。
+正确做法：先拿到 GitHub 上现有的历史，把新文件叠上去，再提交一次，并打标签。
+
+一、准备新文件
+解压最新的 Yinhunlu.zip 到桌面新文件夹，例如「升天图-最新」。
+打开后这一层必须直接看到：
+  index.html
+  shengtian-tu
+  publish-to-github.ps1
+不要再套一层 Yinhunlu 文件夹。
+
+二、追加新版本（推荐）
+用 VS Code 打开「升天图-最新」，终端运行：
+
+  .\publish-to-github.ps1 v2
+
+想自己起名字就把 v2 换成 v3、v20260914 等。
+脚本会：克隆现有仓库 → 拷入新文件 → 新增一次提交 → 打标签 → 普通推送。
+弹出 GitHub 登录就登录。
+
+或自己在终端操作（效果相同）：
+
+  git clone https://github.com/mii22128/Yinhunlu.git Yinhunlu-save
+  # 把「升天图-最新」里除 .git 以外的文件全部复制进 Yinhunlu-save，覆盖同名文件
+  cd Yinhunlu-save
+  git config user.name "mii22128"
+  git config user.email "mii22128@users.noreply.github.com"
+  git add -A
+  git commit -m "Release v2"
+  git tag -a v2 -m v2
+  git push origin main
+  git push origin v2
+
+三、让旧 zip 也能下载
+打开 https://github.com/mii22128/Yinhunlu/releases
+Create a new release → 选择刚才的标签 → 把该版 Yinhunlu.zip 拖进去发布。
+每一版一个 Release，旧包不会被新包顶掉。
+
+四、Pages
+Settings → Pages → Deploy from a branch → main → / (root)
+网页读的是最新一次提交：
+https://mii22128.github.io/Yinhunlu/shengtian-tu/
+想看某一旧版：仓库页 → commits 或 tags → 点进那一版浏览文件。
+
+五、怎么判断已是新版
+人间点齐祭席后先出「汉代音乐与饮食文化」知识卡。
+双龙黑场后是「向前望去一青一红两条巨龙…」。
+向龙尾：玄武衔芝；不吃 → 结局二；力士两条路 → 结局三「永堕深渊」。

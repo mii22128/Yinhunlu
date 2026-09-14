@@ -1,0 +1,38 @@
+/* 电脑 / 平板：16:9 舞台，左右分路，知识卡侧边展开 */
+
+html[data-ui="desktop"] .rotate-prompt {
+  display: none !important;
+}
+
+html[data-ui="desktop"] .letterbox {
+  display: grid;
+  place-items: center;
+}
+
+html[data-ui="desktop"] .game-stage,
+html[data-ui="desktop"] .game-canvas {
+  width: min(100vw, calc(var(--vvh, 100dvh) * 16 / 9));
+  height: min(var(--vvh, 100dvh), calc(var(--vvw, 100vw) * 9 / 16));
+}
+
+html[data-ui="desktop"] .path-stage {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+html[data-ui="desktop"] .path-emblem {
+  flex: 0 0 44%;
+  width: 44%;
+  max-width: none;
+}
+
+html[data-ui="desktop"] .knowledge-sheet {
+  display: none !important;
+}
+
+html[data-ui="desktop"] .hotspot-wrap .inline-card:not(.is-sheet),
+html[data-ui="desktop"] .outline-hotspot .inline-card:not(.is-sheet) {
+  display: block;
+}

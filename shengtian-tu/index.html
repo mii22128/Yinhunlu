@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>升天图 · 汉代帛画升天之旅</title>
+    <link rel="icon" href="assets/icon/favicon.ico" />
+    <script>
+      if (location.protocol === "file:") document.documentElement.classList.add("is-local-file");
+    </script>
+    <link rel="stylesheet" href="css/style.css?v=v3" />
+    <link rel="stylesheet" href="ui/desktop/desktop.css?v=v3" />
+    <link rel="stylesheet" href="ui/mobile/mobile.css?v=v3" />
+  </head>
+  <body>
+    <div id="app" class="game-container" data-theme="ink">
+      <div class="paper-grain" aria-hidden="true"></div>
+      <div class="letterbox">
+        <div id="scene-frame" class="game-stage game-canvas">
+          <header class="hud">
+            <div class="hud-left">
+              <button id="btn-home" class="seal" type="button" aria-label="返回首页">升</button>
+              <div class="hud-titles">
+                <p class="game-name">升天图</p>
+                <p id="chapter-title" class="chapter-title">封面</p>
+              </div>
+            </div>
+            <div class="hud-right">
+              <div id="explore-dots" class="explore-dots" hidden aria-label="探索进度"></div>
+              <button id="btn-atlas" class="hud-btn" type="button">
+                升天录 <span id="card-count">0</span>
+              </button>
+            </div>
+          </header>
+
+          <div id="scene-viewport" class="scene-viewport">
+            <div id="scene-root" class="scene-root"></div>
+          </div>
+
+          <div id="path-stage" class="path-stage hidden"></div>
+          <div id="rite-layer" class="rite-layer hidden"></div>
+          <p id="memory-toast" class="memory-toast hidden" role="status"></p>
+
+          <div id="banner-stage" class="banner-stage hidden">
+            <div id="banner-cluster" class="banner-cluster">
+              <p id="banner-line" class="banner-line"></p>
+              <img class="banner-flag" src="assets/icon/banner.png?v=t-banner1" alt="" />
+            </div>
+            <div id="banner-choices" class="banner-choices"></div>
+          </div>
+
+          <div id="knowledge-sheet" class="knowledge-sheet hidden" aria-live="polite">
+            <button type="button" class="knowledge-backdrop" data-close-card aria-label="收起知识卡片"></button>
+            <article class="inline-card slip-card is-sheet">
+              <h3 class="inline-title"></h3>
+              <p class="inline-body"></p>
+            </article>
+          </div>
+
+          <div id="recall-finale" class="recall-finale hidden" aria-hidden="true">
+            <div class="recall-paper" aria-hidden="true"></div>
+            <div class="recall-collage" id="recall-collage"></div>
+            <div class="recall-ink" id="recall-ink" aria-hidden="true">
+              <div class="ink-wash"></div>
+              <div class="ink-blots">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+            </div>
+            <div class="recall-exhibit" id="recall-exhibit">
+              <img class="recall-silk is-paper" id="recall-silk-paper" alt="" />
+              <img class="recall-silk is-black" id="recall-silk-black" alt="" />
+            </div>
+            <div class="recall-copy" id="recall-copy">
+              <p id="recall-text"></p>
+              <p class="recall-hint" id="recall-hint">单击继续</p>
+            </div>
+            <button type="button" class="ending-back recall-back hidden" id="recall-back">回到卷首</button>
+          </div>
+
+          <div id="ink-drown" class="ink-drown hidden" aria-hidden="true">
+            <div class="ink-wash"></div>
+            <div class="ink-blots" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="ink-panel">
+              <p id="ink-text" class="ink-text"></p>
+              <p id="ink-finale" class="ink-finale"></p>
+              <button id="btn-ink-continue" class="continue-btn veil-continue hidden" type="button">续</button>
+            </div>
+          </div>
+
+          <div id="transition-veil" class="transition-veil hidden" aria-hidden="true">
+            <div class="transition-panel">
+              <p id="transition-text" class="transition-text"></p>
+              <button id="btn-veil-continue" class="continue-btn veil-continue hidden" type="button">续</button>
+            </div>
+          </div>
+
+          <button id="scroll-cue" class="scroll-cue hidden" type="button" aria-label="展开选择">>>></button>
+
+          <section id="dialogue" class="dialogue hidden" aria-live="polite">
+            <div class="dialogue-meta">
+              <span id="speaker" class="speaker"></span>
+            </div>
+            <p id="dialogue-text" class="dialogue-text"></p>
+            <button id="btn-continue" class="continue-btn" type="button">续</button>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div id="atlas-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" data-close="atlas"></div>
+      <article class="atlas-panel">
+        <header class="atlas-head">
+          <h2>升天录</h2>
+          <p id="atlas-empty" class="atlas-empty hidden">尚未收录。点画中风物，竹简与记忆自来。</p>
+        </header>
+        <ul id="atlas-memories" class="atlas-memories"></ul>
+        <ul id="atlas-list" class="atlas-list"></ul>
+        <button id="btn-close-atlas" class="stamp-btn" type="button">合册</button>
+      </article>
+    </div>
+
+    <div id="rotate-prompt" class="rotate-prompt hidden" aria-hidden="true">
+      <div>
+        <div class="rotate-mark" aria-hidden="true">↻</div>
+        <strong>请将手机横过来</strong>
+        <p>横屏游玩《升天图》</p>
+      </div>
+    </div>
+
+    <div id="debug-panel" class="debug-panel hidden">
+      <p>调试</p>
+      <select id="debug-scene"></select>
+      <button id="debug-jump" type="button">跳关</button>
+      <button id="debug-reset" type="button">清空重置</button>
+    </div>
+
+    <script src="src/data.js?v=v3"></script>
+    <script src="src/device.js?v=v3"></script>
+    <script src="ui/desktop/desktop.js?v=v3"></script>
+    <script src="ui/mobile/mobile.js?v=v3"></script>
+    <script src="src/ui.js?v=v3"></script>
+    <script src="src/interaction.js?v=v3"></script>
+    <script src="src/scene.js?v=v3"></script>
+    <script src="src/game.js?v=v3"></script>
+  </body>
+</html>

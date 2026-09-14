@@ -1,0 +1,37 @@
+《升天图》桌面完整包
+====================
+
+解压后，这一层应直接看到：
+  index.html
+  shengtian-tu
+  README.md
+  publish-to-github.ps1
+  如何使用-GitHub-Pages.txt
+
+不要再套一层叫 Yinhunlu 的文件夹再上传。
+
+在线游玩
+--------
+浏览器打开站点根目录，或 shengtian-tu/index.html。
+下载页：download.html ；压缩包：Yinhunlu.zip。
+
+本地游玩
+--------
+先把压缩包完整解压到文件夹，不要在压缩包窗口里直接双击。
+然后打开：shengtian-tu\index.html
+（不要只打开外层那个只有跳转的 index.html 就完事；背景图都在 shengtian-tu 文件夹里。）
+
+若关卡背景仍是空白，用本地服务器打开：
+  cd shengtian-tu
+  python -m http.server 43172
+浏览器访问 http://127.0.0.1:43172
+
+上传到 GitHub（保留旧版本）
+--------------------------
+用 VS Code 打开【本文件夹】（能看到 shengtian-tu 的这一层）。
+终端运行：
+
+  .\publish-to-github.ps1 v2
+
+这会在仓库里新增一次提交和标签，不会覆盖旧历史。
+不要加 --force。详细步骤见「如何使用-GitHub-Pages.txt」。

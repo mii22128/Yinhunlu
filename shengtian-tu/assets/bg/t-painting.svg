@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <rect width="1600" height="900" fill="#3d2b1a"/>
+  <rect x="180" y="80" width="1240" height="740" fill="#c4a06a"/>
+  <rect x="260" y="120" width="1080" height="220" fill="#8b3a2a" opacity="0.85"/>
+  <text x="800" y="250" text-anchor="middle" fill="#f7ecd0" font-size="48" font-family="serif">)</text>
+  <rect x="560" y="340" width="480" height="250" fill="#6a4a2e"/>
+  <text x="800" y="490" text-anchor="middle" fill="#f7ecd0" font-size="48" font-family="serif">º</text>
+  <rect x="560" y="590" width="480" height="180" fill="#2b2118"/>
+  <text x="800" y="700" text-anchor="middle" fill="#d8c39a" font-size="48" font-family="serif">0</text>
+  <rect x="240" y="100" width="1120" height="700" fill="none" stroke="#3d2914" stroke-width="10"/>
+</svg>
